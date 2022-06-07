@@ -36,10 +36,6 @@ router.get('/:id', (req, res) => {
         })
 })
 
-// app.get('/', (req, res, next) => {
-//     res.sendFile(__dirname + '/public/index.html')
-// })
-
 router.post('/', (req, res) => {
     if(!req.body.name || !req.body.price) {
         res.status(500).send('Missing body params!')
@@ -76,17 +72,18 @@ router.put('/:id', (req, res) => {
     }
 })
 
-// router.delete('/:id', (req, res) => {
-//     let id = parseInt(req.params.id)
-//     id--
-//     if (id < productos.length) {
-//         let deletedItem = productos.splice(id,1)
-//         res.send({productos: productos}) 
-//     }
-//     else {
-//         res.status(404).send('Producto no encontrado')
-//     }
-// })
+router.delete('/:id', (req, res) => {
+    let id = parseInt(req.params.id)
+    contenedor
+        .deleteById(id)
+        .then(() => {
+            res.send({response: "Producto eliminado con éxito"})
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(400).send({error: 'Producto no eliminado'})
+        })
+})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }))

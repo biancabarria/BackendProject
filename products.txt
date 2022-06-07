@@ -1,1 +1,1 @@
-[{"timestamp":"prueba","name":"otra fruta","description":"fruta","code":"12345","thumbnail":"google.com","price":15,"stock":2,"id":1}]
+[{"name":"otra fruta","description":"fruta","code":"12345","thumbnail":"google.com","price":106,"stock":2,"id":1,"timestamp":1654628366951},{"name":"otra fruta","description":"fruta","code":"12345","thumbnail":"google.com","price":15,"stock":2,"id":2,"timestamp":1654628367589},{"name":"otra fruta","description":"fruta","code":"12345","thumbnail":"google.com","price":15,"stock":2,"id":3,"timestamp":1654628368515}]

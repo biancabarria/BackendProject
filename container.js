@@ -89,21 +89,19 @@ class Contenedor {
     this.file = file;
   }
 
-  /**
-   * @param {string} messages
-   * @returns an Product numeric ID
-   */
    async save(data) {
     try {
         await fileExist(this.file);
         const array = await this.getAll()
         if (array.length == 0) {
           data['id'] = this.id
+          data['timestamp'] = Date.now()
           data = Array(data)
         } else {
             const array = await this.getAll();
             const index = array[array.length - 1].id + 1;
             data['id'] = index
+            data['timestamp'] = Date.now()
             array.push(data)
             data = array
         }
@@ -111,6 +109,23 @@ class Contenedor {
         throw error
     }
     await fs.promises.writeFile(this.file, JSON.stringify(data))
+  }
+
+  async update(id, data) {
+    try {
+      let array = await this.getAll()
+      let identifier = parseInt(id)
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id === identifier) {
+          for (const [key, value] of Object.entries(data)) {
+            array[i][key] = value
+          }
+          await fs.promises.writeFile(this.file, JSON.stringify(array))
+        }
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 
   /**
@@ -137,6 +152,16 @@ class Contenedor {
         return null
     }
   }
+
+  async deleteById(id) {
+    try {
+      const contenido = JSON.parse(await readfile(this.file))
+      const contenidoSinId = contenido.filter(data => data.id !== id)
+      await writeFile(this.file, JSON.stringify(contenidoSinId))
+    } catch (error) {
+        return null
+    }
+}
 
 }
 
