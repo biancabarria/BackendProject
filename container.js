@@ -135,10 +135,8 @@ class Contenedor {
    */
   async getAll() {
     try {
-
       await fileExist(this.file);
-      return JsonToObject(await readfile(this.file));
-
+      return JsonToObject(await fs.promises.readFile(this.file, "utf-8"));
     } catch (error) {
       throw error;
     }

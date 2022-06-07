@@ -7,7 +7,6 @@ const router = Router()
 
 let productos = [
 ]
-let product_count = 0
 
 const contenedor = new Contenedor("./products.txt")
 
@@ -15,12 +14,12 @@ router.get('/', (req, res) => {
     contenedor
         .getAll()
         .then((products) => {
-            productos = products
+            res.send({products: products})
         })
         .catch((error) => {
             console.log(error)
+            res.status(404).send({error: 'Error obteniendo productos'})
         })
-    res.send({products: productos})
 })
 
 router.get('/:id', (req, res) => {
