@@ -128,11 +128,6 @@ class Contenedor {
     }
   }
 
-  /**
-   * Return all products in the file
-   * @params none
-   * @returns a object of file data
-   */
   async getAll() {
     try {
       await fileExist(this.file);
