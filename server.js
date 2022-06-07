@@ -57,21 +57,24 @@ router.post('/', (req, res) => {
     }
 })
 
-// router.put('/:id', (req, res) => {
-//     if(req.body.title && req.body.price && req.body.thumbnail) {
-//         let id = parseInt(req.params.id)
-//         for (let i = 0; i < productos.length; i++) {
-//             if (productos[i].id === id) {
-//                 productos[i].title = req.body.title
-//                 productos[i].price = req.body.price
-//                 productos[i].thumbnail = req.body.thumbnail
-//                 res.send({productos: productos})
-//             }
-//         }
-//     } else {
-//         res.status(500).send('Missing body params!')
-//     }
-// })
+router.put('/:id', (req, res) => {
+    const { name, description, code, thumbnail, price, stock } = req.body
+    if(name != undefined || description != undefined || code != undefined || thumbnail != undefined || price != undefined || stock != undefined) {
+        id = req.params.id
+        data = req.body
+        contenedor
+        .update(id, data)
+        .then(() => {
+            res.send({response: "Producto actualizado con éxito"})
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(500).send({error: 'Producto no actualizado'})
+        })
+    } else {
+        res.status(400).send({error: 'Missing body params!'})
+    }
+})
 
 // router.delete('/:id', (req, res) => {
 //     let id = parseInt(req.params.id)
