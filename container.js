@@ -89,7 +89,7 @@ class Contenedor {
     this.file = file;
   }
 
-   async save(data) {
+  async save(data) {
     try {
         await fileExist(this.file);
         const array = await this.getAll()
