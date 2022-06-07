@@ -1,0 +1,1 @@
+[{"timestamp":"prueba","name":"otra fruta","description":"fruta","code":"12345","thumbnail":"google.com","price":15,"stock":2,"id":1}]

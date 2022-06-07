@@ -5,4 +5,4 @@ Init npm:
 > npm init -y
 
 Install dependencies
-> npm install express
+> npm install express routes
